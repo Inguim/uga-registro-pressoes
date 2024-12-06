@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/pressao_item_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="20/12/2023 14:30 hrs" />
+
+        <TextView
+            android:id="@+id/pressao_item_valor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/pressao_item_data"
+            app:layout_constraintStart_toStartOf="@id/pressao_item_data"
+            app:layout_constraintTop_toBottomOf="@id/pressao_item_data"
+            tools:text="170x110" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/pressao_item_button_editar"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/yellow"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@android:drawable/ic_input_add"
+            android:text="@string/editar_medicao"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_action_edit"
+            app:iconTint="@color/white"
+            app:layout_constraintStart_toStartOf="@id/pressao_item_valor"
+            app:layout_constraintTop_toBottomOf="@id/pressao_item_valor" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/pressao_item_button_remover"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/red"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@android:drawable/ic_input_add"
+            android:text="@string/excluir_medicao"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_action_delete"
+            app:iconTint="@color/white"
+            app:layout_constraintStart_toEndOf="@id/pressao_item_button_editar"
+            app:layout_constraintTop_toBottomOf="@id/pressao_item_valor" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

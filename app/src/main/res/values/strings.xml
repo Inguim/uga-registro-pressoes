@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">RegistroPressoes</string>
+    <string name="nova_medicao">Nova medição</string>
+    <string name="editar_medicao">Editar</string>
+    <string name="excluir_medicao">Excluir</string>
+</resources>
