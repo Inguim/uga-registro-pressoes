@@ -20,7 +20,6 @@
             android:fontFamily="@font/montserrat_bold"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf=""
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="20/12/2023 14:30 hrs" />
@@ -29,6 +28,7 @@
             android:id="@+id/pressao_item_valor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat"
             android:textColor="@android:color/holo_green_dark"
             android:textSize="19sp"
