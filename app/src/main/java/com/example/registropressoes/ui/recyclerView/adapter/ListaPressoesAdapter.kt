@@ -1,5 +1,6 @@
 package com.example.registropressoes.ui.recyclerView.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +11,7 @@ import com.example.registropressoes.model.Pressao
 
 class ListaPressoesAdapter(
     private val context: Context,
-    pressoes: List<Pressao> = listOf(Pressao(maxima = 13.0, minima = 7.0))
+    pressoes: List<Pressao> = emptyList()
 ) : RecyclerView.Adapter<ListaPressoesAdapter.ViewHolder>() {
 
     private val dataset = pressoes.toMutableList()
@@ -46,4 +47,10 @@ class ListaPressoesAdapter(
 
     override fun getItemCount(): Int = dataset.size
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun atualizar(pressoes: List<Pressao>) {
+        this.dataset.clear()
+        this.dataset.addAll(pressoes)
+        notifyDataSetChanged()
+    }
 }
