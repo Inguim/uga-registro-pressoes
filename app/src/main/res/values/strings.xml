@@ -14,4 +14,8 @@
     <string name="formulario_pressao_error_minima">⚠️ O campo mínima é obrigatório e deve ser maior que 0!</string>
     <string name="activity_inserir_medicao">Inserir medição</string>
     <string name="formulario_pressao_error_falha_insercao">Falha ao inserir medição</string>
+    <string name="confirm_remocao">Confirmação</string>
+    <string name="confirm_remocao_accept">Sim</string>
+    <string name="confirm_remocao_cancel">Não</string>
+    <string name="confirm_remocao_pressao">Tem certeza que deseja excluir essa medição?</string>
 </resources>

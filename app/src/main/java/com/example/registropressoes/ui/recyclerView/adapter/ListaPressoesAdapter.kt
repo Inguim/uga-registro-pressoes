@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.registropressoes.R
 import com.example.registropressoes.databinding.PressaoItemBinding
@@ -41,7 +42,16 @@ class ListaPressoesAdapter(
 
         private fun adicionarItemViewClick() {
             binding.pressaoItemButtonRemover.setOnClickListener {
-                itemClickExcluir(pressao)
+                with(context) {
+                    AlertDialog.Builder(context)
+                        .setTitle(getString(R.string.confirm_remocao))
+                        .setMessage(getString(R.string.confirm_remocao_pressao))
+                        .setPositiveButton(getString(R.string.confirm_remocao_accept)) { _, _ ->
+                            itemClickExcluir(pressao)
+                        }
+                        .setNegativeButton(getString(R.string.confirm_remocao_cancel), null)
+                        .show()
+                }
             }
             binding.pressaoItemButtonEditar.setOnClickListener {
                 itemClickEditar(pressao)
