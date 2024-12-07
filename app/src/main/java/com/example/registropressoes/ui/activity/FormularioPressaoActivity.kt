@@ -44,6 +44,26 @@ class FormularioPressaoActivity : AppCompatActivity() {
 
     private fun isEditing() {
         id = intent.getLongExtra(CHAVE_PRESSAO_ID, 0L)
+        if (id == 0L) {
+            preencherFormularioInclusao()
+        }
+    }
+
+    private fun preencherFormularioInclusao() {
+        with(binding) {
+            activityFormularioPressaoData.setText(
+                Clock.System.now()
+                    .toLocalDateTime(TimeZone.currentSystemDefault())
+                    .toStringDateTimeBR()
+            )
+            lifecycleScope.launch {
+                val ultimaMedicao = dao.listarUltimaMedicao().firstOrNull()
+                if (ultimaMedicao != null) {
+                    activityPressaoProdutoMaxima.setText(ultimaMedicao.maxima.toString())
+                    activityPressaoProdutoMinima.setText(ultimaMedicao.minima.toString())
+                }
+            }
+        }
     }
 
     private fun buscarPressao() {

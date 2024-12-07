@@ -25,4 +25,7 @@ interface PressaoDAO {
 
     @Query("SELECT * FROM Pressao WHERE id = :id")
     fun listarPorId(id: Long): Flow<Pressao?>
+
+    @Query("SELECT * FROM Pressao ORDER BY data DESC LIMIT 1")
+    suspend fun listarUltimaMedicao(): List<Pressao>
 }
