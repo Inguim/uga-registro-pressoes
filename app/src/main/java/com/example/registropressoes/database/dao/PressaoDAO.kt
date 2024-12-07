@@ -22,4 +22,7 @@ interface PressaoDAO {
 
     @Delete
     suspend fun remover(pressao: Pressao)
+
+    @Query("SELECT * FROM Pressao WHERE id = :id")
+    fun listarPorId(id: Long): Flow<Pressao?>
 }

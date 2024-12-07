@@ -27,12 +27,41 @@ class FormularioPressaoActivity : AppCompatActivity() {
     private val dao by lazy {
         AppDataBase.instancia(this).pressaoDAO()
     }
+    private var id = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         configurarBotaoSalvar()
         configurarDatePicker()
+        isEditing()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        buscarPressao()
+    }
+
+    private fun isEditing() {
+        id = intent.getLongExtra(CHAVE_PRESSAO_ID, 0L)
+    }
+
+    private fun buscarPressao() {
+        lifecycleScope.launch {
+            dao.listarPorId(id).collect {
+                it?.let {
+                    preencherFormularioEdicao(it)
+                }
+            }
+        }
+    }
+
+    private fun preencherFormularioEdicao(pressao: Pressao) {
+        with(binding) {
+            activityFormularioPressaoData.setText(pressao.dataToBr)
+            activityPressaoProdutoMaxima.setText(pressao.maxima.toString())
+            activityPressaoProdutoMinima.setText(pressao.minima.toString())
+        }
     }
 
     private fun configurarDatePicker() {
@@ -112,7 +141,11 @@ class FormularioPressaoActivity : AppCompatActivity() {
         if (!validarCampos()) {
             lifecycleScope.launch {
                 try {
-                    dao.adicionar(pressao)
+                    if (id == 0L) {
+                        dao.adicionar(pressao)
+                    } else {
+                        dao.atualizar(pressao)
+                    }
                     finish()
                 } catch (e: Exception) {
                     toast(getString(R.string.formulario_pressao_error_falha_insercao))
@@ -126,6 +159,7 @@ class FormularioPressaoActivity : AppCompatActivity() {
         val maxima = binding.activityPressaoProdutoMaxima.text.toString().toDouble()
         val minina = binding.activityPressaoProdutoMinima.text.toString().toDouble()
         return Pressao(
+            id = id,
             data = data.stringtoLocalDateTime().toLong(),
             maxima = maxima,
             minima = minina

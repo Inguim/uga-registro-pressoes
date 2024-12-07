@@ -38,6 +38,7 @@ class ListaPressoesActivity : AppCompatActivity() {
         val recyclerView = binding.activityListaPressoesRecyclerView
         recyclerView.adapter = adapter
         configurarBotaoRemover()
+        configurarBotaoEditar()
     }
 
     private fun configurarBotaoRemover() {
@@ -47,6 +48,15 @@ class ListaPressoesActivity : AppCompatActivity() {
                     dao.remover(it)
                     buscarPressoes()
                 }
+            }
+        }
+    }
+
+    private fun configurarBotaoEditar() {
+        adapter.itemClickEditar = {
+            Intent(this, FormularioPressaoActivity::class.java).apply {
+                putExtra(CHAVE_PRESSAO_ID, it.id)
+                startActivity(this)
             }
         }
     }

@@ -13,6 +13,7 @@ class ListaPressoesAdapter(
     private val context: Context,
     pressoes: List<Pressao> = emptyList(),
     var itemClickExcluir: (pressao: Pressao) -> Unit = {},
+    var itemClickEditar: (pressao: Pressao) -> Unit = {},
 ) : RecyclerView.Adapter<ListaPressoesAdapter.ViewHolder>() {
 
     private val dataset = pressoes.toMutableList()
@@ -42,7 +43,9 @@ class ListaPressoesAdapter(
             binding.pressaoItemButtonRemover.setOnClickListener {
                 itemClickExcluir(pressao)
             }
-
+            binding.pressaoItemButtonEditar.setOnClickListener {
+                itemClickEditar(pressao)
+            }
         }
     }
 
