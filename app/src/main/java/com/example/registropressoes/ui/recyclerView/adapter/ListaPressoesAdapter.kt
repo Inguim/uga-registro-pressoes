@@ -11,7 +11,8 @@ import com.example.registropressoes.model.Pressao
 
 class ListaPressoesAdapter(
     private val context: Context,
-    pressoes: List<Pressao> = emptyList()
+    pressoes: List<Pressao> = emptyList(),
+    var itemClickExcluir: (pressao: Pressao) -> Unit = {},
 ) : RecyclerView.Adapter<ListaPressoesAdapter.ViewHolder>() {
 
     private val dataset = pressoes.toMutableList()
@@ -19,6 +20,10 @@ class ListaPressoesAdapter(
     inner class ViewHolder(private val binding: PressaoItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private lateinit var pressao: Pressao
+
+        init {
+            adicionarItemViewClick()
+        }
 
         fun vincula(pressao: Pressao) {
             this.pressao = pressao
@@ -30,6 +35,12 @@ class ListaPressoesAdapter(
                         pressao.maxima.toString(),
                         pressao.minima.toString()
                     )
+            }
+        }
+
+        private fun adicionarItemViewClick() {
+            binding.pressaoItemButtonRemover.setOnClickListener {
+                itemClickExcluir(pressao)
             }
 
         }

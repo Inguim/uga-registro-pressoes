@@ -3,7 +3,7 @@ package com.example.registropressoes.model
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.registropressoes.Extensions.toLocaleDateTime
+import com.example.registropressoes.Extensions.parseToLocaleDateTime
 import com.example.registropressoes.Extensions.toStringDateTimeBR
 import kotlinx.datetime.Clock
 import kotlinx.parcelize.Parcelize
@@ -17,5 +17,5 @@ data class Pressao(
     val minima: Double,
     val data: Long = Clock.System.now().toEpochMilliseconds()
 ) : Parcelable {
-    val dataToBr: String get() = data.toLocaleDateTime().toStringDateTimeBR()
+    val dataToBr: String get() = data.parseToLocaleDateTime().toStringDateTimeBR()
 }

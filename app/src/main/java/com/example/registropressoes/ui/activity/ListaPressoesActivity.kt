@@ -37,6 +37,18 @@ class ListaPressoesActivity : AppCompatActivity() {
     private fun configurarRecyclerView() {
         val recyclerView = binding.activityListaPressoesRecyclerView
         recyclerView.adapter = adapter
+        configurarBotaoRemover()
+    }
+
+    private fun configurarBotaoRemover() {
+        adapter.itemClickExcluir = {
+            it.let {
+                lifecycleScope.launch {
+                    dao.remover(it)
+                    buscarPressoes()
+                }
+            }
+        }
     }
 
     private suspend fun buscarPressoes() {

@@ -15,5 +15,5 @@ fun LocalDateTime.toStringDateTimeBR(): String {
 }
 
 fun LocalDateTime.toLong(): Long {
-    return this.toInstant(TimeZone.currentSystemDefault()).toEpochMilliseconds()
+    return this.toInstant(TimeZone.UTC).toEpochMilliseconds()
 }

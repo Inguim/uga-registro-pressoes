@@ -5,7 +5,7 @@ import kotlinx.datetime.format.FormatStringsInDatetimeFormats
 import kotlinx.datetime.format.byUnicodePattern
 
 @OptIn(FormatStringsInDatetimeFormats::class)
-fun String.toLocalDateTime(): LocalDateTime {
+fun String.stringtoLocalDateTime(): LocalDateTime {
     val formatter = LocalDateTime.Format { byUnicodePattern("dd/MM/yyyy - HH:mm") }
     return formatter.parse(this)
 }

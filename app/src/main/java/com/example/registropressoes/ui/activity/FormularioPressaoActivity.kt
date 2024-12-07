@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.orgs.database.AppDataBase
-import com.example.registropressoes.Extensions.toLocalDateTime
-import com.example.registropressoes.Extensions.toLocaleDateTime
+import com.example.registropressoes.Extensions.parseToLocaleDateTime
+import com.example.registropressoes.Extensions.stringtoLocalDateTime
 import com.example.registropressoes.Extensions.toLong
 import com.example.registropressoes.Extensions.toStringDateTimeBR
 import com.example.registropressoes.Extensions.toast
@@ -15,6 +15,10 @@ import com.example.registropressoes.model.Pressao
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.atTime
+import kotlinx.datetime.toLocalDateTime
 
 class FormularioPressaoActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -37,7 +41,13 @@ class FormularioPressaoActivity : AppCompatActivity() {
             val datePicker = MaterialDatePicker.Builder.datePicker().build()
             datePicker.show(supportFragmentManager, "MATERIAl_DATE_PICKER")
             datePicker.addOnPositiveButtonClickListener { milli ->
-                campoData.setText(milli.toLocaleDateTime().toStringDateTimeBR())
+                var dataSelecionada = milli.parseToLocaleDateTime()
+                val agora = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+                dataSelecionada = dataSelecionada.date.atTime(
+                    hour = agora.hour,
+                    minute = agora.minute
+                )
+                campoData.setText(dataSelecionada.toStringDateTimeBR())
             }
         }
     }
@@ -79,7 +89,7 @@ class FormularioPressaoActivity : AppCompatActivity() {
         val campo = binding.activityFormularioPressaoData
         try {
             val valor = campo.text.toString()
-            valor.toLocalDateTime().toLong()
+            valor.stringtoLocalDateTime().toLong()
             return true
         } catch (e: Exception) {
             return false
@@ -116,9 +126,9 @@ class FormularioPressaoActivity : AppCompatActivity() {
         val maxima = binding.activityPressaoProdutoMaxima.text.toString().toDouble()
         val minina = binding.activityPressaoProdutoMinima.text.toString().toDouble()
         return Pressao(
-            data.toLocalDateTime().toLong(),
-            maxima,
-            minina
+            data = data.stringtoLocalDateTime().toLong(),
+            maxima = maxima,
+            minima = minina
         )
     }
 }
