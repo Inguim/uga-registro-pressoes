@@ -4,4 +4,13 @@
     <string name="editar_medicao">Editar</string>
     <string name="excluir_medicao">Excluir</string>
     <string name="pressa_item_valor">%s x %s</string>
+    <string name="formulario_pressao_maxima">Máxima *</string>
+    <string name="formulario_pressao_minima">Mínima *</string>
+    <string name="formulario_pressao_data">Data *</string>
+    <string name="formulario_pressao_salvar">Salvar</string>
+    <string name="formulario_pressao_error_data">⚠️ O campo data é obrigatório!</string>
+    <string name="formulario_pressao_error_maxima">⚠️ O campo máxima é obrigatório e deve ser maior que 0!</string>
+    <string name="formulario_pressao_error_minima">⚠️ O campo mínima é obrigatório e deve ser maior que 0!</string>
+    <string name="activity_inserir_medicao">Inserir medição</string>
+    <string name="formulario_pressao_error_falha_insercao">Falha ao inserir medição</string>
 </resources>

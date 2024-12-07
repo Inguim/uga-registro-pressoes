@@ -15,6 +15,9 @@
         android:theme="@style/Theme.RegistroPressoes"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.FormularioPressaoActivity"
+            android:label="@string/activity_inserir_medicao" />
+        <activity
             android:name=".ui.activity.ListaPressoesActivity"
             android:exported="true"
             android:label="@string/app_name"

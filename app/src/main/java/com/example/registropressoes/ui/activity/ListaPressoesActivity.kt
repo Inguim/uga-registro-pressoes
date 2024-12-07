@@ -1,5 +1,6 @@
 package com.example.registropressoes.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -13,14 +14,15 @@ class ListaPressoesActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityListaPressoesBinding.inflate(layoutInflater)
     }
-    private val pressaoDAO by lazy {
+    private val dao by lazy {
         AppDataBase.instancia(this).pressaoDAO()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        configuraRecyclerView()
+        configurarRecyclerView()
+        configurarFab()
     }
 
     override fun onResume() {
@@ -32,14 +34,26 @@ class ListaPressoesActivity : AppCompatActivity() {
         }
     }
 
-    private fun configuraRecyclerView() {
+    private fun configurarRecyclerView() {
         val recyclerView = binding.activityListaPressoesRecyclerView
         recyclerView.adapter = adapter
     }
 
     private suspend fun buscarPressoes() {
-        pressaoDAO.listar().collect {
+        dao.listar().collect {
             adapter.atualizar(it)
         }
+    }
+
+    private fun configurarFab() {
+        val fab = binding.activityListaPressoesFab
+        fab.setOnClickListener {
+            goFormularioPressoes()
+        }
+    }
+
+    private fun goFormularioPressoes() {
+        val intent = Intent(this, FormularioPressaoActivity::class.java)
+        startActivity(intent)
     }
 }
