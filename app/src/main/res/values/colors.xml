@@ -10,4 +10,12 @@
     <color name="yellow">#FFC107</color>
     <color name="red">#FF0707</color>
     <color name="green">#1EB803</color>
+
+    <color name="colorPrimary">#7c03b8</color>
+    <color name="colorPrimaryVariant">#a075d2</color>
+    <color name="colorOnPrimary">#ffffff</color>
+
+    <color name="colorSecondary">#43a047</color>
+    <color name="colorSecondaryVariant">#76d275</color>
+    <color name="colorOnSecondary">#ffffff</color>
 </resources>

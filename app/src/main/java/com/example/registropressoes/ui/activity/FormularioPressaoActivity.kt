@@ -57,6 +57,7 @@ class FormularioPressaoActivity : AppCompatActivity() {
     }
 
     private fun preencherFormularioEdicao(pressao: Pressao) {
+        title = getString(R.string.edicao_medicao)
         with(binding) {
             activityFormularioPressaoData.setText(pressao.dataToBr)
             activityPressaoProdutoMaxima.setText(pressao.maxima.toString())
