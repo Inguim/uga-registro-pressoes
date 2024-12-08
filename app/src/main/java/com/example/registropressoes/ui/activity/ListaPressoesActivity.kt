@@ -9,6 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.orgs.database.AppDataBase
 import com.example.registropressoes.R
 import com.example.registropressoes.databinding.ActivityListaPressoesBinding
+import com.example.registropressoes.extensions.setIconColor
+import com.example.registropressoes.extensions.setTitleColor
 import com.example.registropressoes.model.PressaoFiltro
 import com.example.registropressoes.ui.recyclerView.adapter.ListaPressoesAdapter
 import kotlinx.coroutines.launch
@@ -22,6 +24,7 @@ class ListaPressoesActivity : AppCompatActivity() {
         AppDataBase.instancia(this).pressaoDAO()
     }
     private val filtro = PressaoFiltro()
+    private var menuSelecionado: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +52,41 @@ class ListaPressoesActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        indicarMenuSelecionadoFiltro(menu)
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    private fun indicarMenuSelecionadoFiltro(menu: Menu?) {
+        menu?.let {
+            val item: MenuItem = it.findItem(R.id.menu_lista_pressoes_filtrar)
+            val subMenu = item.subMenu
+            val itemFiltrando: MenuItem? = when (filtro.mode) {
+                EnumFiltrosPressao.HOJE ->
+                    subMenu?.findItem(R.id.menu_lista_pressoes_filtrar_hoje)
+
+                EnumFiltrosPressao.SEMANA ->
+                    subMenu?.findItem(R.id.menu_lista_pressoes_filtrar_semana)
+
+                EnumFiltrosPressao.MES ->
+                    subMenu?.findItem(R.id.menu_lista_pressoes_filtrar_mes)
+
+                EnumFiltrosPressao.TODOS ->
+                    subMenu?.findItem(R.id.menu_lista_pressoes_filtrar_todos)
+            }
+            when (filtro.mode) {
+                EnumFiltrosPressao.TODOS -> item.setIcon(R.drawable.ic_action_filter_off)
+                else -> item.setIcon(R.drawable.ic_action_filter_on)
+            }
+            item.setIconColor(this, R.color.colorMenuItemSelected)
+            item.setTitleColor(this, R.color.colorMenuItemSelected)
+            itemFiltrando?.let {
+                itemFiltrando.setIconColor(this, R.color.colorMenuItemSelected)
+                itemFiltrando.setTitleColor(this, R.color.colorMenuItemSelected)
+            }
+        }
+    }
+
     private fun filtrar(item: MenuItem) {
         when (item.itemId) {
             R.id.menu_lista_pressoes_filtrar_hoje -> filtro.definir(EnumFiltrosPressao.HOJE)
@@ -59,6 +97,7 @@ class ListaPressoesActivity : AppCompatActivity() {
         lifecycleScope.launch {
             buscarPressoes()
         }
+        invalidateOptionsMenu()
     }
 
     private fun configurarRecyclerView() {
