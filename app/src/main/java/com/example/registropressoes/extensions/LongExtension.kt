@@ -1,4 +1,4 @@
-package com.example.registropressoes.Extensions
+package com.example.registropressoes.extensions
 
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime

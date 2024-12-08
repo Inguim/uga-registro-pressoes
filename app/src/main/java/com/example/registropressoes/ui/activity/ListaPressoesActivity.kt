@@ -2,10 +2,14 @@ package com.example.registropressoes.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.orgs.database.AppDataBase
+import com.example.registropressoes.R
 import com.example.registropressoes.databinding.ActivityListaPressoesBinding
+import com.example.registropressoes.model.PressaoFiltro
 import com.example.registropressoes.ui.recyclerView.adapter.ListaPressoesAdapter
 import kotlinx.coroutines.launch
 
@@ -17,6 +21,7 @@ class ListaPressoesActivity : AppCompatActivity() {
     private val dao by lazy {
         AppDataBase.instancia(this).pressaoDAO()
     }
+    private val filtro = PressaoFiltro()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +36,28 @@ class ListaPressoesActivity : AppCompatActivity() {
             launch {
                 buscarPressoes()
             }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_lista_pressoes, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        filtrar(item)
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun filtrar(item: MenuItem) {
+        when (item.itemId) {
+            R.id.menu_lista_pressoes_filtrar_hoje -> filtro.definir(EnumFiltrosPressao.HOJE)
+            R.id.menu_lista_pressoes_filtrar_semana -> filtro.definir(EnumFiltrosPressao.SEMANA)
+            R.id.menu_lista_pressoes_filtrar_mes -> filtro.definir(EnumFiltrosPressao.MES)
+            R.id.menu_lista_pressoes_filtrar_todos -> filtro.definir(EnumFiltrosPressao.TODOS)
+        }
+        lifecycleScope.launch {
+            buscarPressoes()
         }
     }
 
@@ -62,8 +89,17 @@ class ListaPressoesActivity : AppCompatActivity() {
     }
 
     private suspend fun buscarPressoes() {
-        dao.listar().collect {
-            adapter.atualizar(it)
+        if (filtro.mode == EnumFiltrosPressao.TODOS) {
+            dao.listar().collect {
+                adapter.atualizar(it)
+            }
+        } else {
+            val (start, end) = filtro.getPeriodo()
+            if (start != null && end != null) {
+                dao.listarPeriodo(start, end).collect {
+                    adapter.atualizar(it)
+                }
+            }
         }
     }
 

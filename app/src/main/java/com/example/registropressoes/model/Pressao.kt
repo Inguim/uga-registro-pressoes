@@ -1,10 +1,10 @@
 package com.example.registropressoes.model
 
+import com.example.registropressoes.extensions.parseToLocaleDateTime
+import com.example.registropressoes.extensions.toStringDateTimeBR
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.registropressoes.Extensions.parseToLocaleDateTime
-import com.example.registropressoes.Extensions.toStringDateTimeBR
 import kotlinx.datetime.Clock
 import kotlinx.parcelize.Parcelize
 

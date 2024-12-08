@@ -11,6 +11,9 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PressaoDAO {
+    @Query("SELECT * FROM Pressao WHERE data BETWEEN :dataStart AND :dataEnd ORDER BY data DESC")
+    fun listarPeriodo(dataStart: Long, dataEnd: Long): Flow<List<Pressao>>
+
     @Query("SELECT * FROM Pressao ORDER BY data DESC")
     fun listar(): Flow<List<Pressao>>
 

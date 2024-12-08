@@ -18,4 +18,9 @@
     <string name="confirm_remocao_accept">Sim</string>
     <string name="confirm_remocao_cancel">Não</string>
     <string name="confirm_remocao_pressao">Tem certeza que deseja excluir essa medição?</string>
+    <string name="menu_lista_pressoes_filtrar">Filtrar</string>
+    <string name="menu_lista_pressoes_filtrar_todos">Todos</string>
+    <string name="menu_lista_pressoes_filtrar_semana">Está semana</string>
+    <string name="menu_lista_pressoes_filtrar_mes">Este mês</string>
+    <string name="menu_lista_pressoes_filtrar_hoje">Hoje</string>
 </resources>
