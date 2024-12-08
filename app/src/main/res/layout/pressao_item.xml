@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat"
-            android:textColor="@android:color/holo_green_dark"
+            android:textColor="@color/pressao_saudavel"
             android:textSize="19sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/pressao_item_data"

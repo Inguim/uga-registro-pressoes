@@ -19,4 +19,7 @@
     <color name="colorSecondaryVariant">#76d275</color>
     <color name="colorOnSecondary">#ffffff</color>
     <color name="colorMenuItemSelected">#000ed9</color>
+    <color name="pressao_saudavel">#ff669900</color>
+    <color name="pressao_alerta">#994F00</color>
+    <color name="pressao_risco">#990000</color>
 </resources>

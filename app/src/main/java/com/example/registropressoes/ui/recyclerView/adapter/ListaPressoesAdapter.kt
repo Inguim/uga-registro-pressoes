@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.registropressoes.R
 import com.example.registropressoes.databinding.PressaoItemBinding
 import com.example.registropressoes.model.Pressao
+import com.example.registropressoes.ui.utils.generateMedicaoIndicador
 
 class ListaPressoesAdapter(
     private val context: Context,
@@ -31,12 +32,9 @@ class ListaPressoesAdapter(
             this.pressao = pressao
             with(binding) {
                 pressaoItemData.text = pressao.dataToBr
-                pressaoItemValor.text =
-                    context.getString(
-                        R.string.pressa_item_valor,
-                        pressao.maxima.toString(),
-                        pressao.minima.toString()
-                    )
+                val (cor, texto) = generateMedicaoIndicador(context, pressao)
+                pressaoItemValor.text = texto
+                pressaoItemValor.setTextColor(cor)
             }
         }
 

@@ -5,6 +5,7 @@
     <string name="editar_medicao">Editar</string>
     <string name="excluir_medicao">Excluir</string>
     <string name="pressa_item_valor">%s x %s</string>
+    <string name="pressa_item_valor_risco">⚠️ %s x %s</string>
     <string name="formulario_pressao_maxima">Máxima *</string>
     <string name="formulario_pressao_minima">Mínima *</string>
     <string name="formulario_pressao_data">Data *</string>
