@@ -24,7 +24,6 @@ class ListaPressoesActivity : AppCompatActivity() {
         AppDataBase.instancia(this).pressaoDAO()
     }
     private val filtro = PressaoFiltro()
-    private var menuSelecionado: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
