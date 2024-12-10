@@ -37,13 +37,30 @@ interface PressaoDAO {
     @Query("SELECT * FROM Pressao ORDER BY data DESC LIMIT 1")
     suspend fun listarUltimaMedicao(): List<Pressao>
 
-    @Query("SELECT * FROM Pressao ORDER BY maxima ASC LIMIT 1")
-    suspend fun listarMaiorMedicao(): Pressao?
+    @Query("""SELECT * FROM Pressao 
+        WHERE
+        CASE 
+                WHEN :dataStart and :dataEnd IS NOT NULL THEN data BETWEEN :dataStart and :dataEnd
+                ELSE 1 = 1
+        END 
+        ORDER BY maxima DESC LIMIT 1""")
+    suspend fun listarMaiorMedicao(dataStart: Long? = null, dataEnd: Long? = null): Pressao?
 
-    @Query("SELECT * FROM Pressao ORDER BY minima ASC LIMIT 1")
-    suspend fun listarMenorMedicao(): Pressao?
+    @Query("""SELECT * FROM Pressao 
+        WHERE
+        CASE 
+                WHEN :dataStart and :dataEnd IS NOT NULL THEN data BETWEEN :dataStart and :dataEnd
+                ELSE 1 = 1
+        END 
+        ORDER BY maxima ASC LIMIT 1""")
+    suspend fun listarMenorMedicao(dataStart: Long? = null, dataEnd: Long? = null): Pressao?
 
-    @Query("SELECT AVG(maxima) as avg_maxima, AVG(minima) as avg_minima FROM Pressao")
-    suspend fun listarMediaMedicoes(): MediaPressao
+    @Query("""SELECT AVG(maxima) as avg_maxima, AVG(minima) as avg_minima FROM PRESSAO
+         WHERE
+         CASE 
+                WHEN :dataStart and :dataEnd IS NOT NULL THEN data BETWEEN :dataStart and :dataEnd
+                ELSE 1 = 1
+         END""")
+    suspend fun listarMediaMedicoes(dataStart: Long? = null, dataEnd: Long? = null): MediaPressao
 
 }
