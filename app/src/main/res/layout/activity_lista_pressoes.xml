@@ -5,6 +5,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_indicadores"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/card_indicadores_titulo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:paddingBottom="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/card_indicadores_titulo" />
+
+            <TextView
+                android:id="@+id/card_indicadores_media"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:textSize="19sp"
+                app:layout_constraintEnd_toEndOf="@id/card_indicadores_titulo"
+                app:layout_constraintStart_toStartOf="@id/card_indicadores_titulo"
+                app:layout_constraintTop_toBottomOf="@id/card_indicadores_titulo"
+                tools:hint="@string/card_indicadores_media" />
+
+            <TextView
+                android:id="@+id/card_indicadores_maxima"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat"
+                android:textSize="19sp"
+                app:layout_constraintEnd_toEndOf="@id/card_indicadores_media"
+                app:layout_constraintStart_toStartOf="@id/card_indicadores_media"
+                app:layout_constraintTop_toBottomOf="@id/card_indicadores_media"
+                tools:hint="@string/card_indicadores_maxima" />
+
+            <TextView
+                android:id="@+id/card_indicadores_minima"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat"
+                android:textSize="19sp"
+                app:layout_constraintEnd_toEndOf="@id/card_indicadores_maxima"
+                app:layout_constraintStart_toStartOf="@id/card_indicadores_maxima"
+                app:layout_constraintTop_toBottomOf="@id/card_indicadores_maxima"
+                tools:hint="@string/card_indicadores_minima" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/activity_lista_pressoes_fab"
         android:layout_width="wrap_content"
@@ -25,10 +93,11 @@
         android:id="@+id/activity_lista_pressoes_recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_indicadores"
         tools:listitem="@layout/pressao_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

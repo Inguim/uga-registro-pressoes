@@ -24,4 +24,8 @@
     <string name="menu_lista_pressoes_filtrar_semana">Está semana</string>
     <string name="menu_lista_pressoes_filtrar_mes">Este mês</string>
     <string name="menu_lista_pressoes_filtrar_hoje">Hoje</string>
+    <string name="card_indicadores_titulo">Resumo medições</string>
+    <string name="card_indicadores_media">Média: %s x %s</string>
+    <string name="card_indicadores_maxima">Máxima: %s x %s %s</string>
+    <string name="card_indicadores_minima">Mínima: %s x %s %s</string>
 </resources>

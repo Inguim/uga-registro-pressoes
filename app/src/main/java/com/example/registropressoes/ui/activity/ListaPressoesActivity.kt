@@ -2,6 +2,7 @@ package com.example.registropressoes.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -87,16 +88,53 @@ class ListaPressoesActivity : AppCompatActivity() {
     }
 
     private fun filtrar(item: MenuItem) {
+        var buscar = true
         when (item.itemId) {
             R.id.menu_lista_pressoes_filtrar_hoje -> filtro.definir(EnumFiltrosPressao.HOJE)
             R.id.menu_lista_pressoes_filtrar_semana -> filtro.definir(EnumFiltrosPressao.SEMANA)
             R.id.menu_lista_pressoes_filtrar_mes -> filtro.definir(EnumFiltrosPressao.MES)
             R.id.menu_lista_pressoes_filtrar_todos -> filtro.definir(EnumFiltrosPressao.TODOS)
+            else -> buscar = false
         }
-        lifecycleScope.launch {
-            buscarPressoes()
+        if (buscar) {
+            lifecycleScope.launch {
+                launch {
+                    buscarPressoes()
+                }
+            }
         }
         invalidateOptionsMenu()
+    }
+
+    private suspend fun buscarIndicadores() {
+        val (inicio, fim) = filtro.getPeriodo()
+        val media = dao.listarMediaMedicoes(inicio, fim)
+        val maxima = dao.listarMaiorMedicao(inicio, fim)
+        val minima = dao.listarMenorMedicao(inicio, fim)
+        Log.i("teste", "buscarIndicadores: $minima")
+        with(binding) {
+            cardIndicadoresMedia.text = getString(
+                R.string.card_indicadores_media,
+                media.avg_maxima.toString(),
+                media.avg_minima.toString()
+            )
+            cardIndicadoresMaxima.text = maxima?.let {
+                getString(
+                    R.string.card_indicadores_maxima,
+                    it.maxima.toString(),
+                    it.minima.toString(),
+                    "(${it.dataToBr})"
+                )
+            } ?: getString(R.string.card_indicadores_maxima, "0.0", "0.0", "")
+            cardIndicadoresMinima.text = minima?.let {
+                getString(
+                    R.string.card_indicadores_minima,
+                    it.maxima.toString(),
+                    it.minima.toString(),
+                    "(${it.dataToBr})"
+                )
+            } ?: getString(R.string.card_indicadores_minima, "0.0", "0.0", "")
+        }
     }
 
     private fun configurarRecyclerView() {
@@ -126,15 +164,17 @@ class ListaPressoesActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun buscarPressoes() {
+    private suspend fun buscarPressoes(atualizarIndicadores: Boolean = true) {
         if (filtro.mode == EnumFiltrosPressao.TODOS) {
             dao.listar().collect {
+                if (atualizarIndicadores) buscarIndicadores()
                 adapter.atualizar(it)
             }
         } else {
             val (start, end) = filtro.getPeriodo()
             if (start != null && end != null) {
                 dao.listarPeriodo(start, end).collect {
+                    if (atualizarIndicadores) buscarIndicadores()
                     adapter.atualizar(it)
                 }
             }
