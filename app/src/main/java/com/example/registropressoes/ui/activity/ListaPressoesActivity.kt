@@ -2,7 +2,6 @@ package com.example.registropressoes.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -111,7 +110,6 @@ class ListaPressoesActivity : AppCompatActivity() {
         val media = dao.listarMediaMedicoes(inicio, fim)
         val maxima = dao.listarMaiorMedicao(inicio, fim)
         val minima = dao.listarMenorMedicao(inicio, fim)
-        Log.i("teste", "buscarIndicadores: $minima")
         with(binding) {
             cardIndicadoresMedia.text = getString(
                 R.string.card_indicadores_media,
