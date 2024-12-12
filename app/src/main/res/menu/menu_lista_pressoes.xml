@@ -26,4 +26,9 @@
                 />
         </menu>
     </item>
+    <item
+        android:id="@+id/menu_lista_pressoes_importar"
+        android:icon="@drawable/ic_action_importar"
+        android:title="@string/menu_lista_pressoes_filtrar"
+        app:showAsAction="ifRoom" />
 </menu>

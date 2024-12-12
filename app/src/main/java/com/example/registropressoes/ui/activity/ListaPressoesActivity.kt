@@ -47,7 +47,10 @@ class ListaPressoesActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        filtrar(item)
+        when (item.itemId) {
+            R.id.menu_lista_pressoes_importar -> goFormularioImportacao()
+            else -> filtrar(item)
+        }
         return super.onOptionsItemSelected(item)
     }
 
@@ -188,6 +191,11 @@ class ListaPressoesActivity : AppCompatActivity() {
 
     private fun goFormularioPressoes() {
         val intent = Intent(this, FormularioPressaoActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goFormularioImportacao() {
+        val intent = Intent(this, FormularioImportarMedicoesActivity::class.java)
         startActivity(intent)
     }
 }

@@ -19,6 +19,7 @@
     <string name="confirm_remocao_accept">Sim</string>
     <string name="confirm_remocao_cancel">Não</string>
     <string name="confirm_remocao_pressao">Tem certeza que deseja excluir essa medição?</string>
+    <string name="menu_lista_pressoes_importar">Importar</string>
     <string name="menu_lista_pressoes_filtrar">Filtrar</string>
     <string name="menu_lista_pressoes_filtrar_todos">Todos</string>
     <string name="menu_lista_pressoes_filtrar_semana">Está semana</string>
@@ -28,4 +29,8 @@
     <string name="card_indicadores_media">Média: %s x %s</string>
     <string name="card_indicadores_maxima">Máxima: %s x %s %s</string>
     <string name="card_indicadores_minima">Mínima: %s x %s %s</string>
+    <string name="activity_importar_medicoes">Importar medições</string>
+    <string name="formulario_importar_medicoes">Medições *</string>
+    <string name="formulario_importar_medicoes_helper">Ex: 04/12 - 14:30hrs - 170x110</string>
+    <string name="formulario_importar_importar">Importar</string>
 </resources>
