@@ -18,13 +18,12 @@ data class PressaoImportada(val data: String, val hora: String, val pressao: Str
             hour = horas,
             minute = minutos
         )
-        val pressaoGerada = Pressao(
+        return Pressao(
             maxima = maxima,
             minima = minima,
             data = dataGerada.toLong(),
             importado = true
         )
-        return pressaoGerada
     }
 
     private fun parseHora(): Pair<Int, Int> {
