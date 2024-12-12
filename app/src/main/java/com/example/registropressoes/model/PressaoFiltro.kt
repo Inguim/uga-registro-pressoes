@@ -31,7 +31,7 @@ data class PressaoFiltro(
             EnumFiltrosPressao.MES -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 gerarMes()
             }
-
+            EnumFiltrosPressao.IMPORTADOS -> gerarImportados()
             EnumFiltrosPressao.TODOS -> gerarTodos()
         }
     }
@@ -64,6 +64,11 @@ data class PressaoFiltro(
     }
 
     private fun gerarTodos() {
+        _inicio = null
+        _fim = null
+    }
+
+    private fun gerarImportados() {
         _inicio = null
         _fim = null
     }

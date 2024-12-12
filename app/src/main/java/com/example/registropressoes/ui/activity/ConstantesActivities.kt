@@ -7,4 +7,5 @@ enum class EnumFiltrosPressao (val mode: String) {
     SEMANA("SEMANA"),
     MES("MES"),
     TODOS("TODOS"),
+    IMPORTADOS("IMPORTADOS")
 }
