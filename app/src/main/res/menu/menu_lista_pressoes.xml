@@ -24,6 +24,10 @@
                 android:id="@+id/menu_lista_pressoes_filtrar_todos"
                 android:title="@string/menu_lista_pressoes_filtrar_todos"
                 />
+            <item
+                android:id="@+id/menu_lista_pressoes_filtrar_importados"
+                android:title="@string/menu_lista_pressoes_filtrar_importados"
+                />
         </menu>
     </item>
     <item

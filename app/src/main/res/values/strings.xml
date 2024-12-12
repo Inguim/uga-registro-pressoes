@@ -22,6 +22,7 @@
     <string name="menu_lista_pressoes_importar">Importar</string>
     <string name="menu_lista_pressoes_filtrar">Filtrar</string>
     <string name="menu_lista_pressoes_filtrar_todos">Todos</string>
+    <string name="menu_lista_pressoes_filtrar_importados">Importados</string>
     <string name="menu_lista_pressoes_filtrar_semana">Está semana</string>
     <string name="menu_lista_pressoes_filtrar_mes">Este mês</string>
     <string name="menu_lista_pressoes_filtrar_hoje">Hoje</string>
@@ -31,6 +32,8 @@
     <string name="card_indicadores_minima">Mínima: %s x %s %s</string>
     <string name="activity_importar_medicoes">Importar medições</string>
     <string name="formulario_importar_medicoes">Medições *</string>
+    <string name="formulario_importar_error_medicoes">⚠️ O campo medições é obrigatório!</string>
     <string name="formulario_importar_medicoes_helper">Ex: 04/12 - 14:30hrs - 170x110</string>
     <string name="formulario_importar_importar">Importar</string>
+    <string name="formulario_importar_error_importacao">Falha ao importar medições</string>
 </resources>
