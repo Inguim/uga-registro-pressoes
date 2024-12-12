@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.orgs.database.AppDataBase
 import com.example.registropressoes.R
 import com.example.registropressoes.databinding.ActivityListaPressoesBinding
+import com.example.registropressoes.extensions.parseToUmaCasaDecimal
 import com.example.registropressoes.extensions.setIconColor
 import com.example.registropressoes.extensions.setTitleColor
 import com.example.registropressoes.model.PressaoFiltro
@@ -75,6 +76,9 @@ class ListaPressoesActivity : AppCompatActivity() {
 
                 EnumFiltrosPressao.TODOS ->
                     subMenu?.findItem(R.id.menu_lista_pressoes_filtrar_todos)
+
+                EnumFiltrosPressao.IMPORTADOS ->
+                    subMenu?.findItem(R.id.menu_lista_pressoes_filtrar_importados)
             }
             when (filtro.mode) {
                 EnumFiltrosPressao.TODOS -> item.setIcon(R.drawable.ic_action_filter_off)
@@ -96,6 +100,7 @@ class ListaPressoesActivity : AppCompatActivity() {
             R.id.menu_lista_pressoes_filtrar_semana -> filtro.definir(EnumFiltrosPressao.SEMANA)
             R.id.menu_lista_pressoes_filtrar_mes -> filtro.definir(EnumFiltrosPressao.MES)
             R.id.menu_lista_pressoes_filtrar_todos -> filtro.definir(EnumFiltrosPressao.TODOS)
+            R.id.menu_lista_pressoes_filtrar_importados -> filtro.definir(EnumFiltrosPressao.IMPORTADOS)
             else -> buscar = false
         }
         if (buscar) {
@@ -116,22 +121,22 @@ class ListaPressoesActivity : AppCompatActivity() {
         with(binding) {
             cardIndicadoresMedia.text = getString(
                 R.string.card_indicadores_media,
-                media.avg_maxima.toString(),
-                media.avg_minima.toString()
+                media.avg_maxima.parseToUmaCasaDecimal(),
+                media.avg_minima.parseToUmaCasaDecimal()
             )
             cardIndicadoresMaxima.text = maxima?.let {
                 getString(
                     R.string.card_indicadores_maxima,
-                    it.maxima.toString(),
-                    it.minima.toString(),
+                    it.maxima.parseToUmaCasaDecimal(),
+                    it.minima.parseToUmaCasaDecimal(),
                     "(${it.dataToBr})"
                 )
             } ?: getString(R.string.card_indicadores_maxima, "0.0", "0.0", "")
             cardIndicadoresMinima.text = minima?.let {
                 getString(
                     R.string.card_indicadores_minima,
-                    it.maxima.toString(),
-                    it.minima.toString(),
+                    it.maxima.parseToUmaCasaDecimal(),
+                    it.minima.parseToUmaCasaDecimal(),
                     "(${it.dataToBr})"
                 )
             } ?: getString(R.string.card_indicadores_minima, "0.0", "0.0", "")
@@ -168,6 +173,11 @@ class ListaPressoesActivity : AppCompatActivity() {
     private suspend fun buscarPressoes(atualizarIndicadores: Boolean = true) {
         if (filtro.mode == EnumFiltrosPressao.TODOS) {
             dao.listar().collect {
+                if (atualizarIndicadores) buscarIndicadores()
+                adapter.atualizar(it)
+            }
+        } else if (filtro.mode == EnumFiltrosPressao.IMPORTADOS) {
+            dao.listarImportados().collect {
                 if (atualizarIndicadores) buscarIndicadores()
                 adapter.atualizar(it)
             }

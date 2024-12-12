@@ -33,7 +33,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/activity_formulario_importar_medicoes_botao_salvar"
+            android:id="@+id/activity_formulario_importar_medicoes_botao_importar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"

@@ -14,6 +14,7 @@ import com.example.registropressoes.extensions.toast
 import com.example.registropressoes.model.Pressao
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
@@ -28,6 +29,7 @@ class FormularioPressaoActivity : AppCompatActivity() {
         AppDataBase.instancia(this).pressaoDAO()
     }
     private var id = 0L
+    private var importado = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +48,16 @@ class FormularioPressaoActivity : AppCompatActivity() {
         id = intent.getLongExtra(CHAVE_PRESSAO_ID, 0L)
         if (id == 0L) {
             preencherFormularioInclusao()
+        } else {
+            lifecycleScope.launch {
+                verificarImportado()
+            }
         }
+    }
+
+    private suspend fun verificarImportado() {
+        val pressao = dao.listarPorId(id).firstOrNull()
+        importado = pressao?.importado ?: false
     }
 
     private fun preencherFormularioInclusao() {
@@ -183,7 +194,8 @@ class FormularioPressaoActivity : AppCompatActivity() {
             id = id,
             data = data.stringtoLocalDateTime().toLong(),
             maxima = maxima,
-            minima = minina
+            minima = minina,
+            importado = importado
         )
     }
 }
