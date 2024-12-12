@@ -22,8 +22,14 @@ interface PressaoDAO {
     @Query("SELECT * FROM Pressao ORDER BY data DESC")
     fun listar(): Flow<List<Pressao>>
 
+    @Query("SELECT * FROM Pressao WHERE importado = '1' ORDER BY data DESC")
+    fun listarImportados(): Flow<List<Pressao>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun adicionar(pressao: Pressao)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun multiplaAdicao(pressoes: List<Pressao>)
 
     @Update
     suspend fun atualizar(pressao: Pressao)

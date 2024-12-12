@@ -1,6 +1,7 @@
 package com.example.registropressoes.model
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.registropressoes.extensions.parseToLocaleDateTime
@@ -15,7 +16,9 @@ data class Pressao(
     val id: Long = 0L,
     val maxima: Double,
     val minima: Double,
-    val data: Long = Clock.System.now().toEpochMilliseconds()
+    val data: Long = Clock.System.now().toEpochMilliseconds(),
+    @ColumnInfo(defaultValue = "0")
+    val importado: Boolean = false,
 ) : Parcelable {
     val dataToBr: String get() = data.parseToLocaleDateTime().toStringDateTimeBR()
 }
