@@ -39,5 +39,7 @@
     <string name="formulario_importar_error_importacao">Falha ao importar medições</string>
     <string name="exportar_exportar">Exportar para área de transferência</string>
     <string name="exportar_copiar">Copiar</string>
+    <string name="exportar_texto_buscando">Buscando informações…</string>
+    <string name="exportar_texto_encontrado">Medições encontradas</string>
     <string name="exportar_message_copiado">Copiado para área de transferência</string>
 </resources>

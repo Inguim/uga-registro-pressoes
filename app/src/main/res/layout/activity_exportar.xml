@@ -11,6 +11,17 @@
         android:layout_height="wrap_content"
         tools:context=".ui.activity.ExportarActivity">
 
+        <ProgressBar
+            android:id="@+id/activity_exportar_loading"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/activity_exportar_textinputlayout_texto"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -26,6 +37,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
+                android:hint="@string/exportar_texto_buscando"
+                android:focusable="false"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>

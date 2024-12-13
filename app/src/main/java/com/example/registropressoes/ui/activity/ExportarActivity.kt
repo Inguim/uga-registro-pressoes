@@ -5,15 +5,16 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.orgs.database.AppDataBase
 import com.example.registropressoes.R
 import com.example.registropressoes.databinding.ActivityExportarBinding
+import com.example.registropressoes.extensions.parseToExportString
 import com.example.registropressoes.extensions.parseToLocaleDateTime
 import com.example.registropressoes.extensions.parseToUmaCasaDecimal
-import com.example.registropressoes.extensions.parseToExportString
 import com.example.registropressoes.extensions.toast
 import kotlinx.coroutines.launch
 
@@ -35,6 +36,7 @@ class ExportarActivity : AppCompatActivity() {
     }
 
     private suspend fun buscarPressoes() {
+        showLoading()
         dao.listar().collect {
             val texto = StringBuilder("Acompanhamento pressão\n\n")
             it.map {
@@ -43,6 +45,7 @@ class ExportarActivity : AppCompatActivity() {
             }
             val campo = binding.activityExportarTexto
             campo.setText(texto)
+            hideLoading()
         }
     }
 
@@ -60,5 +63,17 @@ class ExportarActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
             toast(getString(R.string.exportar_message_copiado))
         }
+    }
+
+    private fun showLoading() {
+        binding.activityExportarLoading.visibility = View.VISIBLE
+        binding.activityExportarBotaoExportar.isEnabled = false
+    }
+
+    private fun hideLoading() {
+        binding.activityExportarLoading.visibility = View.GONE
+        binding.activityExportarBotaoExportar.isEnabled = true
+        binding.activityExportarTextinputlayoutTexto.hint =
+            getString(R.string.exportar_texto_encontrado)
     }
 }
