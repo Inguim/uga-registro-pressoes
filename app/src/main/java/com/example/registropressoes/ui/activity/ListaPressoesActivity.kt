@@ -115,9 +115,14 @@ class ListaPressoesActivity : AppCompatActivity() {
 
     private suspend fun buscarIndicadores() {
         val (inicio, fim) = filtro.getPeriodo()
-        val media = dao.listarMediaMedicoes(inicio, fim)
-        val maxima = dao.listarMaiorMedicao(inicio, fim)
-        val minima = dao.listarMenorMedicao(inicio, fim)
+        val importado: Boolean? = if (filtro.mode == EnumFiltrosPressao.IMPORTADOS) {
+            true
+        } else {
+            null
+        }
+        val media = dao.listarMediaMedicoes(inicio, fim, importado)
+        val maxima = dao.listarMaiorMedicao(inicio, fim, importado)
+        val minima = dao.listarMenorMedicao(inicio, fim, importado)
         with(binding) {
             cardIndicadoresMedia.text = getString(
                 R.string.card_indicadores_media,
@@ -131,7 +136,7 @@ class ListaPressoesActivity : AppCompatActivity() {
                     it.minima.parseToUmaCasaDecimal(),
                     "(${it.dataToBr})"
                 )
-            } ?: getString(R.string.card_indicadores_maxima, "0.0", "0.0", "")
+            } ?: getString(R.string.card_indicadores_maxima, "0", "0", "")
             cardIndicadoresMinima.text = minima?.let {
                 getString(
                     R.string.card_indicadores_minima,
@@ -139,7 +144,7 @@ class ListaPressoesActivity : AppCompatActivity() {
                     it.minima.parseToUmaCasaDecimal(),
                     "(${it.dataToBr})"
                 )
-            } ?: getString(R.string.card_indicadores_minima, "0.0", "0.0", "")
+            } ?: getString(R.string.card_indicadores_minima, "0", "0", "")
         }
     }
 
