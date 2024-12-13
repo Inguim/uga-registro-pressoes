@@ -29,3 +29,10 @@ fun String.stringtoLocalDateTime(): LocalDateTime {
 fun Long.parseToLocaleDateTime(): LocalDateTime {
     return Instant.fromEpochMilliseconds(this).toLocalDateTime(TimeZone.UTC)
 }
+
+@OptIn(FormatStringsInDatetimeFormats::class)
+fun LocalDateTime.parseToExportString(): String {
+    return this.format(LocalDateTime.Format {
+        byUnicodePattern("dd/MM - HH:mm")
+    })
+}
