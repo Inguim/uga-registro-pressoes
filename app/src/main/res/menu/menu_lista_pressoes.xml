@@ -35,4 +35,9 @@
         android:icon="@drawable/ic_action_importar"
         android:title="@string/menu_lista_pressoes_filtrar"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_lista_pressoes_exportar"
+        android:icon="@drawable/ic_action_copy"
+        android:title="@string/menu_lista_pressoes_exportar"
+        app:showAsAction="ifRoom" />
 </menu>

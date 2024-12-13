@@ -20,6 +20,7 @@
     <string name="confirm_remocao_cancel">Não</string>
     <string name="confirm_remocao_pressao">Tem certeza que deseja excluir essa medição?</string>
     <string name="menu_lista_pressoes_importar">Importar</string>
+    <string name="menu_lista_pressoes_exportar">Exportar</string>
     <string name="menu_lista_pressoes_filtrar">Filtrar</string>
     <string name="menu_lista_pressoes_filtrar_todos">Todos</string>
     <string name="menu_lista_pressoes_filtrar_importados">Importados</string>
@@ -36,4 +37,7 @@
     <string name="formulario_importar_medicoes_helper">Ex: 04/12 - 14:30hrs - 170x110</string>
     <string name="formulario_importar_importar">Importar</string>
     <string name="formulario_importar_error_importacao">Falha ao importar medições</string>
+    <string name="exportar_exportar">Exportar para área de transferência</string>
+    <string name="exportar_copiar">Copiar</string>
+    <string name="exportar_message_copiado">Copiado para área de transferência</string>
 </resources>
