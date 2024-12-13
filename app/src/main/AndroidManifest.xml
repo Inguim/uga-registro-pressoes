@@ -18,6 +18,9 @@
             android:name=".ui.activity.FormularioPressaoActivity"
             android:label="@string/activity_inserir_medicao" />
         <activity
+            android:name=".ui.activity.ExportarActivity"
+            android:label="@string/exportar_exportar" />
+        <activity
             android:name=".ui.activity.FormularioImportarMedicoesActivity"
             android:label="@string/activity_inserir_medicao" />
         <activity
@@ -30,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
