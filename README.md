@@ -39,4 +39,4 @@ Este aplicativo permite que o usuário registre e monitore suas medidas de press
 
 ## Licença
 
-Este projeto é licenciado sob a Licença MIT - consulte o arquivo [LICENSE.md](LICENSE.md) para obter detalhes.
+Este projeto é licenciado sob a Licença MIT.
