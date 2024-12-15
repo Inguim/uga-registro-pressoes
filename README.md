@@ -1,4 +1,5 @@
 # Registro de Pressões
+> Read in [English](https://github.com/Inguim/uga-registro-pressoes/blob/main/README-en-US.md)
 > Aplicativo nativo Android feito com o intuito de auxiliar meu Pai a monitorar/controlar as medições de pressão cardiacas realizadas em minha avó.
 ## Descrição
 
