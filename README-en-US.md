@@ -2,11 +2,11 @@
 > Leia em [Português](https://github.com/Inguim/uga-registro-pressoes/blob/main/README.md)
 
 > Native Android application created to help my Father to monitor/control cardiac blood pressure measurements for my Grandmother..
-## Descrição
+## Description
 
 This application allows users to register and monitor their blood pressure measurements. It provides a simple and intuitive interface for create, viewing, and managing blood pressure data, focusing on a minimalist design tailored for an older audience.
 
-## Funcionalidades
+## Features
 
 * Register new blood pressure measurements, including date, time, systolic (maximum) and diastolic (minimum) pressure.
 * View blood pressure measurement history in a list.
